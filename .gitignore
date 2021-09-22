@@ -1,7 +1,7 @@
 wallets.json
 networks.json
-./projects
-./binaries
+projects
+binaries
 .idea
 venv
 env
