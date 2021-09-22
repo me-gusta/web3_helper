@@ -1,0 +1,7 @@
+wallets.json
+networks.json
+./projects
+./binaries
+.idea
+venv
+env
