@@ -24,15 +24,21 @@
     "swap_url": "https://exchange.pancakeswap.finance/#/swap?outputCurrency="
   },
   {
-    "name": "poly_jetswap",
+    "name": "poly.jetswap",
     "factory_address": "0x668ad0ed2622C62E24f0d5ab6B6Ac1b9D2cD4AC7",
     "router_address": "0x5C6EC38fb0e2609672BDf628B1fD605A523E5923",
     "swap_url": "https://polygon-exchange.jetswap.finance/#/swap?outputCurrency="
   },
   {
-    "name": "avax_traderjoe",
+    "name": "avax.traderjoe",
     "factory_address": "0x9ad6c38be94206ca50bb0d90783181662f0cfa10",
     "router_address": "0x60aE616a2155Ee3d9A68541Ba4544862310933d4",
     "swap_url": "https://www.traderjoexyz.com/#/trade?outputCurrency="
+  },
+  {
+    "name": "avax.pangolin",
+    "factory_address": "0xefa94DE7a4656D787667C749f7E1223D71E9FD88",
+    "router_address": "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106",
+    "swap_url": "https://app.pangolin.exchange/#/swap?outputCurrency="
   }
 ]
