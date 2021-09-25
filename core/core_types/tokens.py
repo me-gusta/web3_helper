@@ -15,7 +15,7 @@ from core.printers import cprint, PrintColor
 @dataclass
 class ERC20Token:
     address: Union[ChecksumAddress, str]
-    symbol: str = None
+    _symbol: str = None
     _decimals: int = None
     contract: Contract = None
 
@@ -26,26 +26,31 @@ class ERC20Token:
         return f'<ERC20Token {self.symbol or self.address[:6]}>'
 
     @property
+    def symbol(self) -> str:
+        try:
+            assert self._symbol is not None, f''
+        except AssertionError:
+            self._symbol = self.contract.functions.symbol().call()
+            cprint(PrintColor.CYAN, f'Symbol initiated for {self}')
+        return self._symbol
+
+    @property
     def decimals(self) -> int:
         try:
             assert self._decimals is not None, f'Decimals is not initialized for {self}'
         except AssertionError:
-            self._init_decimals()
-            cprint(PrintColor.PINK, f'Decimals initiated for {self}')
+            self._decimals = self.contract.functions.decimals().call()
+            cprint(PrintColor.CYAN, f'Decimals initiated for {self}')
         return self._decimals
-
-    def _init_decimals(self):
-        assert self.contract is not None, f'Contract is not initialized for {self}. Please use .init_contract(w3: Web3)'
-        self._decimals = self.contract.functions.decimals().call()
 
     def init_contract(self, w3: Web3):
         self.contract = w3.eth.contract(address=ma(self.address), abi=ABI.ERC_20)
 
-    def to_wei(self, amount: Union[Decimal, int]) -> int:
+    def to_wei(self, amount: Union[Decimal, int, float]) -> int:
         """ Transforms human-readable amount to wei """
         return int((10 ** self.decimals) * amount)
 
-    def from_wei(self, wei_amount: int):
+    def from_wei(self, wei_amount: Union[Decimal, int, float]):
         return Decimal(wei_amount) / (10 ** self.decimals)
 
 
