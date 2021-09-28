@@ -23,7 +23,7 @@ class ERC20Token:
         self.address = ma(self.address)
 
     def __repr__(self):
-        return f'<ERC20Token {self.symbol or self.address[:6]}>'
+        return f'<ERC20Token {self._symbol or self.address[:6]}>'
 
     @property
     def symbol(self) -> str:
