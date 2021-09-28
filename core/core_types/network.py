@@ -32,16 +32,18 @@ class Network:
                 token_info['decimals']
             ))
 
-    def get_token_by_symbol(self, symbol: str) -> Union[ERC20Token, None]:
+    def get_token_by_symbol(self, symbol: str) -> ERC20Token:
         for x in self.tokens:
             if x.symbol == symbol:
                 return x
+        raise ValueError(f'Token with {symbol} not found in {self}')
 
-    def get_token_by_address(self, address: str) -> Union[ERC20Token, None]:
+    def get_token_by_address(self, address: str) -> ERC20Token:
         address = ma(address)
         for x in self.tokens:
             if x.address == address:
                 return x
+        raise ValueError(f'Token with {address} not found in {self}')
 
     def get_tx_url(self, tx_hash: Union[str, HexBytes]):
         if isinstance(tx_hash, HexBytes):
