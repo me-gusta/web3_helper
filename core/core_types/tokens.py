@@ -43,8 +43,10 @@ class ERC20Token:
             cprint(PrintColor.CYAN, f'Decimals initiated for {self}')
         return self._decimals
 
-    def init_contract(self, w3: Web3):
+    def init_contract(self, w3: Web3, with_symbol: bool = False):
         self.contract = w3.eth.contract(address=ma(self.address), abi=ABI.ERC_20)
+        if with_symbol:
+            self.symbol
 
     def to_wei(self, amount: Union[Decimal, int, float]) -> int:
         """ Transforms human-readable amount to wei """
