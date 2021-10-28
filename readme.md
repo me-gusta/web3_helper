@@ -8,3 +8,9 @@ Check out ./example_projects to get started.
 Features:
 - Multiple wallets
 - Multiple chains (networks).
+
+Installation
+```
+pip install -r requirements.txt
+python setup.py
+```
